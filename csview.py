@@ -64,7 +64,8 @@ class CSV:
 
     def filterColumns(self, row):
         maxRow = len(row)
-        return [row[i] for i in self.cols if i < maxRow]
+        data = [row[i] if i < maxRow else '' for i in self.cols]
+        return data if any(data) else []
 
     def add(self, row, comment, header = False):
         fields = self.filterColumns(row)
